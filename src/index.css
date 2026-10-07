@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+@theme {
+  --color-aviation-navy: #0b192c;
+  --color-aviation-surface: #f8fafc;
+  --color-aviation-border: #e2e8f0;
+  --color-aviation-amber: #f59e0b;
+  --color-aviation-blue: #0ea5e9;
+  --color-aviation-green: #059669;
+
+  --color-primary: #006097;
+  --color-primary-container: #007abd;
+  --color-primary-fixed: #cee5ff;
+  --color-primary-fixed-dim: #96cbff;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #fdfcff;
+  --color-on-primary-fixed: #001d33;
+
+  --color-secondary: #525f75;
+  --color-secondary-container: #d6e3fe;
+  --color-secondary-fixed: #d6e3fe;
+  --color-secondary-fixed-dim: #bac7e1;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-fixed: #0e1c2f;
+
+  --color-tertiary: #735c00;
+  --color-tertiary-container: #cca72f;
+  --color-tertiary-fixed: #ffe088;
+  --color-tertiary-fixed-dim: #e9c349;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-fixed: #241a00;
+
+  --color-surface: #f7fafe;
+  --color-surface-dim: #d7dade;
+  --color-surface-bright: #f7fafe;
+  --color-surface-container: #ebeef2;
+  --color-surface-container-low: #f1f4f8;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #e5e8ec;
+  --color-surface-container-highest: #e0e3e7;
+  --color-surface-variant: #e0e3e7;
+
+  --color-inverse-surface: #181c1f;
+  --color-inverse-on-surface: #eef1f5;
+  --color-on-surface: #181c1f;
+  --color-on-surface-variant: #3f4851;
+  --color-outline: #6f7882;
+  --color-outline-variant: #bfc7d3;
+
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+  --spacing-margin: 1.5rem;
+  --spacing-margin-lg: 4rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-gutter-lg: 2rem;
+}
+
+:root {
+  --navy: #0b192c;
+  --surface: #f8fafc;
+  --border: #e2e8f0;
+  --amber: #f59e0b;
+  --blue: #0ea5e9;
+  --green: #059669;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #0b192c;
+    background-color: #f8fafc;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  img, svg, video, canvas, audio, iframe, embed, object {
+    max-width: 100%;
+  }
+
+  /* Prevent iOS automatic zoom on focus while maintaining crisp desktop sizing */
+  @media screen and (max-width: 767px) {
+    input:not([type="checkbox"]):not([type="radio"]), 
+    select, 
+    textarea {
+      font-size: 16px !important;
+    }
+  }
+}
+
+/* Safe area insets for notched devices */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.font-display {
+  font-family: 'DM Serif Display', Georgia, serif;
+}
+
+.font-mono-data {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.num-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Mechanical Solari Split-Flap Animation for Content Changes */
+@keyframes flapTileFlip {
+  0% {
+    transform: rotateX(0deg);
+    filter: brightness(1);
+  }
+  49% {
+    transform: rotateX(-90deg);
+    filter: brightness(0.65);
+  }
+  50% {
+    transform: rotateX(90deg);
+    filter: brightness(0.65);
+  }
+  100% {
+    transform: rotateX(0deg);
+    filter: brightness(1);
+  }
+}
+
+.split-flap-tile {
+  perspective: 400px;
+  display: inline-block;
+  transform-style: preserve-3d;
+  vertical-align: middle;
+}
+
+.split-flap-tile.is-flipping {
+  animation: flapTileFlip 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Authentic Boarding Pass & Ticket Perforations */
+.ticket-edge-dashed {
+  background-image: linear-gradient(to bottom, #e2e8f0 55%, transparent 45%);
+  background-size: 2px 14px;
+  background-repeat: repeat-y;
+}
+
+.ticket-notch-top {
+  position: absolute;
+  top: -9px;
+  width: 18px;
+  height: 18px;
+  background-color: #f8fafc;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  z-index: 10;
+}
+
+.ticket-notch-bottom {
+  position: absolute;
+  bottom: -9px;
+  width: 18px;
+  height: 18px;
+  background-color: #f8fafc;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  z-index: 10;
+}
+
+@media print {
+  header, footer, nav, button, .no-print {
+    display: none !important;
+  }
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  .print-container {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ThreeUI Shader Frame & Landing Page Integration */
+.shader-frame {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #05070a;
+}
+
+.shader-frame .landing-page-frame,
+.shader-frame .threeui-background {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
